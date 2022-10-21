@@ -142,6 +142,26 @@ public class App {
         return text;
     }
 
+    public static int checkDigit(int[] array){
+        int [] array2 = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+            array2[i] = array[i]*(i+2);
+        }
+        int sum =0;
+        for (int i = 0; i < array2.length; i++) {
+            sum = sum + array2[i];
+        }
+        int modulo=sum%11;
+        sum=11-modulo;
+        if(sum==10){sum=0;}
+        if(sum==11){sum=5;}
+        return sum;
+    }
+
+
+
+
+
 
 
     public static void main(String[] args) {
