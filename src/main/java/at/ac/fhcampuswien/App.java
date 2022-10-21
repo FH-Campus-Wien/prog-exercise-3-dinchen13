@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -104,6 +105,45 @@ public class App {
     }
 
 
+    public static String camelCase(String text) {
+        char[] textNew = new char[text.length()];
+        char[] zeichen = text.toCharArray();
+        int lange=0;
+        int counter = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if ((i==0)&&(zeichen[i]>90)){
+                zeichen[i] = (char) (zeichen[i] - 32);
+            }
+            if ((zeichen[i] >= 65) && (zeichen[i] <= 90) && (i != 0)) {
+                zeichen[i] = (char) (zeichen[i] + 32);
+            }
+        }
+        for (int i = 0; i < text.length(); i++) {
+
+            if ((zeichen[i] == '.') || (zeichen[i] == '?') || (zeichen[i] == '!')||(zeichen[i] == '\'')|| (zeichen[i] == ',')|| (zeichen[i] == '-')){
+                continue;
+            }
+
+            textNew[counter] = zeichen[i];
+
+            if (zeichen[i] == ' ') {
+                textNew[counter] = (char) (zeichen[i + 1] - 32);
+                i++;
+            }
+            counter++;
+            lange++;
+        }
+
+        char[] textNew2 = new char[lange];
+        for (int i = 0; i < lange; i++) {
+            textNew2[i] = textNew[i];
+        }
+        text = String.valueOf(textNew2);
+        return text;
+    }
+
+
+
     public static void main(String[] args) {
         // test your method implementations here
         // make method calls
@@ -120,7 +160,7 @@ public class App {
         }
 
         int number = randomNumberBetweenOneAndHundred();
-        guessingGame(number);
+        //guessingGame(number);
 
         int[] array1 = {1, 4, 6, 9};
         int[] array2 = {7, 6, 3, 0};
@@ -133,6 +173,11 @@ public class App {
             System.out.print(j);
         }
 
+        Scanner scanner =new Scanner(System.in);
+        System.out.println("gib einen text ein:");
+        String text = scanner.nextLine();
+        String result =camelCase(text);
+        System.out.println(result);
 
 
     }
